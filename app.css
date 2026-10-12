@@ -1,0 +1,18 @@
+body {
+    background: linear-gradient(135deg, gold, brown 85%, black 90%);
+}
+
+.title1 h1 {
+    color:rebeccapurple;
+    font-size: 4rem;
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    margin: 0;
+}
+
+.title1 p {
+    color: rgb(35, 1, 1);
+    text-align: right;
+    margin-top: 0;
+}
