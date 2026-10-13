@@ -1,8 +1,8 @@
 from flask import Flask, jsonify, request
 import os
 from flask_cors import CORS
+import json
 from openai import OpenAI
-
 
 app = Flask(__name__)
 CORS(app)
@@ -13,48 +13,36 @@ client = OpenAI(api_key=api_key)
 def ask_recipie(prompt):
     # Ask OpenAI to generate a recipe
     prompt = f"""
-    You are a creative, professional chef who specializes in
-    making delicious, unique, and easy-to-follow recipes.
+        You are a creative chef. Generate a delicious, beginner-friendly
+        recipe based on: {prompt}
 
-    The user wants to make: {prompt}
+        Include exact measurements, cooking times, clear instructions,
+        substitutions, and useful tips. Respect dietary preferences.
 
-    Your task:
-    1. Create a delicious recipe based on the user's request.
-    2. Give the dish a creative and appealing name.
-    3. List all ingredients with exact measurements.
-    4. Provide clear, step-by-step cooking instructions.
-    5. Include preparation time, cooking time, and servings.
-    6. Suggest substitutions for uncommon ingredients.
-    7. Add optional tips to improve the flavor.
-    8. Respect any dietary restrictions or preferences mentioned.
-    9. If the user provides ingredients, prioritize using them.
+        Return ONLY valid JSON in this structure:
 
-    Rules:
-    - Keep instructions simple, practical, and beginner-friendly.
-    - Make the recipe flavorful and enjoyable.
-    - Avoid unnecessary explanations.
-    - Never suggest unsafe cooking practices.
-    - Use ingredients that are reasonably accessible.
-    - Do not invent cooking temperatures or times that could
-      make food unsafe.
+        {{
+            "name": "Dish name",
+            "description": "Short description",
+            "prep_time": "10 minutes",
+            "cook_time": "20 minutes",
+            "servings": 2,
+            "ingredients": [
+                {{"name": "Potatoes", "quantity": "2 medium"}}
+            ],
+            "instructions": [
+                "Step 1",
+                "Step 2"
+            ],
+            "substitutions": [
+                {{"original": "Butter", "alternative": "Olive oil"}}
+            ],
+            "tips": [
+                "Cooking tip"
+            ]
+        }}
 
-    Format your response as:
-
-    DISH NAME:
-    DESCRIPTION:
-    PREP TIME:
-    COOK TIME:
-    SERVINGS:
-
-    INGREDIENTS:
-    - Ingredient and quantity
-
-    INSTRUCTIONS:
-    1. Step one
-    2. Step two
-
-    CHEF'S TIPS:
-    - Optional improvements
+        Return no markdown, explanations, or text outside the JSON.
     """
     response = client.responses.create(
         model="gpt-4.1-mini",
@@ -67,6 +55,26 @@ def ask_recipie(prompt):
 def make_recipie():
     data = request.get_json()
     dish = data["dish"]
-    recipie = ask_recipie(dish)
-    return jsonify({"dish": recipie})
+    recipie = json.loads(ask_recipie(dish))
+    name = recipie["name"] 
+    description = recipie["description"]
+    prep_time = recipie["prep_time"]
+    cook_time = recipie["cook_time"]
+    servings = recipie["servings"]
+    ingredients = recipie["ingredients"]
+    instructions = recipie["instructions"]
+    substitutions = recipie["substitutions"]
+    tips = recipie["tips"]
+
+    return jsonify({
+        "name": name,
+        "description": description,
+        "prep_time": prep_time,
+        "cook_time": cook_time,
+        "servings": servings,
+        "ingredients": ingredients,
+        "instructions": instructions,
+        "substitutions": substitutions,
+        "tips": tips
+    })
 app.run(debug=True)
