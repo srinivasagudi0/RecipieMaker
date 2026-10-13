@@ -23,7 +23,18 @@ function suggestMe() {
 }
 
 
-function createRecipie() {
-    let recipie = document.getElementById("rec")
-    recipie.textContent = "This feature is in construction"
+async function createRecipie() {
+    const dish = document.getElementById("box").value;
+
+    const response = await fetch("/api/recipe", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ dish: dish })
+    });
+
+    const data = await response.json();
+
+    document.getElementById("rec").textContent = data.recipe;
 }
