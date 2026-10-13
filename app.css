@@ -2,6 +2,10 @@ body {
     background: linear-gradient(135deg, gold, brown 85%, black 90%);
 }
 
+button {
+    cursor: pointer;
+}
+
 .title1 h1 {
     color:rebeccapurple;
     font-size: 4rem;
@@ -15,4 +19,40 @@ body {
     color: rgb(35, 1, 1);
     text-align: right;
     margin-top: 0;
+}
+
+.ask-user {
+    background-color: rgba(255, 228, 196, 0.427);
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.ask-user h2 {
+    text-align: center;
+    margin: 0;
+    margin-bottom: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.77rem;
+}
+
+.ask-user input {
+    width: 99%;
+    height: 5%;
+    font-size: 1rem;
+    margin: 3px;
+    border-radius: 10%;
+}
+
+.ask-user button {
+    margin-bottom: 6px;
+    position: relative;
+    left:40%;
+    background-color: burlywood;
+    transition: 0.3s ease-in-out;
+}
+
+.ask-user button:hover {
+    transform: translateY(-10px);
+    font-size: 1.2rem;
+    background-color: greenyellow;
 }
