@@ -26,15 +26,13 @@ function suggestMe() {
 async function createRecipie() {
     const dish = document.getElementById("box").value;
 
-    const response = await fetch("/api/recipe", {
+    const response = await fetch("http://127.0.0.1:5000/api/make/recipe", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({ dish: dish })
     });
-
     const data = await response.json();
-
-    document.getElementById("rec").textContent = data.recipe;
+    document.getElementById("rec").textContent = data.dish;
 }
