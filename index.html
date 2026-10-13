@@ -3,7 +3,7 @@
         <title>Recipie Book</title>
         <link rel="stylesheet" href="app.css">
     </head>
-    <main>
+    <body>
         <div class="title1">
         <h1>Welcome to Recipie Book!</h1>
         <p>~ I will help you make anything you would like.</p>
@@ -11,9 +11,10 @@
         <br/>
         <div class="ask-user">
             <h2>What would you like to eat</h2>
-            <input type="text" placeholder="Hashbrowns with smoothered onions"/>
-            <button>Suggest Me</button>
+            <input  id="box" type="text" placeholder="Hashbrowns with smoothered onions"/>
+            <button onclick="suggestMe()">Suggest Me</button>
             <button>Submit</button>
         </div>
-    </main>
+        <script src="script.js"></script>
+    </body>
 </html>
