@@ -19,5 +19,11 @@ function suggestMe() {
     ];
     let idea = ideas[Math.floor(Math.random() * ideas.length)];
     let textbox = document.getElementById("box");
-    textbox.value = idea
+    textbox.value = idea;
+}
+
+
+function createRecipie() {
+    let recipie = document.getElementById("rec")
+    recipie.textContent = "This feature is in construction"
 }
