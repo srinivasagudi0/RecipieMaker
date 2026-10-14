@@ -35,7 +35,7 @@ async function createRecipie() {
     });
     const data = await response.json();
     document.getElementById("rec").innerHTML = `
-    <h1>${data.name}</h1>
+    <h1 class="recipie-title">${data.name}</h1>
     <p>${data.description}</p>
     <p>Prep Time: ~<span class="prep-time">${data.prep_time}</span></p>
     <p>Cook Time: ~<span class="cook-time">${data.cook_time}</span> </p>
@@ -48,13 +48,13 @@ async function createRecipie() {
     </ol>
     <h2>Substitutions</h2>
     <ol>${data.substitutions.map(substitution => `
-            <li>${substitution}</li>
+            <li>${substitution.original} → ${substitution.alternative}</li>
         `).join("")}
     </ol>
     <h2>Ingredients</h2>
     <ol>
         ${data.ingredients.map(ingredient => `
-            <li>${ingredient}</li>
+            <li>${ingredient.quantity} ${ingredient.name}</li>
         `).join("")}
     </ol>
     <h2>Tips</h2>
