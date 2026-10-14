@@ -34,5 +34,35 @@ async function createRecipie() {
         body: JSON.stringify({ dish: dish })
     });
     const data = await response.json();
-    document.getElementById("rec").textContent = data.dish;
+    document.getElementById("rec").innerHTML = `
+    <h1>${data.name}</h1>
+    <p>${data.description}</p>
+    <p>Prep Time: ~<span class="prep-time">${data.prep_time}</span></p>
+    <p>Cook Time: ~<span class="cook-time">${data.cook_time}</span> </p>
+    <p>Servings: <i>${data.servings}</i></p>
+    <h2>Instructions</h2>
+    <ol>
+        ${data.instructions.map(instruction => `
+            <li>${instruction}</li>
+        `).join("")}
+    </ol>
+    <h2>Substitutions</h2>
+    <ol>${data.substitutions.map(substitution => `
+            <li>${substitution}</li>
+        `).join("")}
+    </ol>
+    <h2>Ingredients</h2>
+    <ol>
+        ${data.ingredients.map(ingredient => `
+            <li>${ingredient}</li>
+        `).join("")}
+    </ol>
+    <h2>Tips</h2>
+    <ol>
+        ${data.tips.map(tip => `
+            <li>${tip}</li>
+        `).join("")}
+    </ol>
+
+    `
 }
