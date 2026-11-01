@@ -10,3 +10,16 @@ addButton.addEventListener('click',() => {
         inpuField.value = '';
     } else return;
 })
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        addButton.click();
+    }
+});
+const clearAllBtn = document.getElementById('clear-btn');
+
+clearAllBtn.addEventListener('click', ()=>{
+    while (ingList.firstChild) {
+        ingList.removeChild(ingList.firstChild);
+    }
+})
