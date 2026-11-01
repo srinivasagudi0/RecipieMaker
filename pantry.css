@@ -7,4 +7,23 @@ body {
     font-size: 3.5rem;
     color: #000000;
     margin-top: 2rem;
+    font-family: Caveat, cursive;
+    margin-bottom:0px;
+}
+
+.caption {
+    text-align: center;
+    margin-top: 0px;
+    font-family:'Courier New', Courier, monospace;
+}
+
+#ingredient-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.1rem;
+    border: 1px solid #59be00;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    text-align: center;
 }
