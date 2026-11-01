@@ -1,0 +1,10 @@
+body {
+    background-color: #f3c273;
+}
+
+.title {
+    text-align: center;
+    font-size: 3.5rem;
+    color: #000000;
+    margin-top: 2rem;
+}
