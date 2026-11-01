@@ -7,15 +7,24 @@ addButton.addEventListener('click',() => {
         const newIngredient = document.createElement('li');
         newIngredient.textContent = inpuField.value;
         ingList.appendChild(newIngredient);
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Delete';
+        newIngredient.appendChild(deleteBtn);
         inpuField.value = '';
+        deleteBtn.addEventListener('click', (event)=>{
+            const li = event.target.parentElement;
+            ingList.removeChild(li);
+        })
     } else return;
 })
+
 
 document.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
         addButton.click();
     }
 });
+
 const clearAllBtn = document.getElementById('clear-btn');
 
 clearAllBtn.addEventListener('click', ()=>{
@@ -23,3 +32,4 @@ clearAllBtn.addEventListener('click', ()=>{
         ingList.removeChild(ingList.firstChild);
     }
 })
+
