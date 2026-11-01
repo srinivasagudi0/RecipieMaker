@@ -6,6 +6,7 @@ addButton.addEventListener('click',() => {
     if (inpuField.value.trim() !== ''){
         const newIngredient = document.createElement('li');
         newIngredient.textContent = inpuField.value;
+        const ingredientName = inpuField.value.trim();
         ingList.appendChild(newIngredient);
         const deleteBtn = document.createElement('button');
         deleteBtn.textContent = 'Delete';
@@ -13,8 +14,11 @@ addButton.addEventListener('click',() => {
         inpuField.value = '';
         deleteBtn.addEventListener('click', (event)=>{
             const li = event.target.parentElement;
-            ingList.removeChild(li);
-        })
+            const confirm = window.confirm(`Are you sure you want to delete ${ingredientName}?`);
+            if (confirm) {
+                ingList.removeChild(li);
+            } else return;
+        });
     } else return;
 })
 
