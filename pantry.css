@@ -27,3 +27,34 @@ body {
     margin-bottom: 10px;
     text-align: center;
 }
+
+#add-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.1rem;
+    background-color: #59be00;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+#add-btn:hover {
+    background-color: #4a9c00;
+}
+
+#clear-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.1rem;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#clear-btn:hover {
+    background-color: #ff1a1a;
+}
