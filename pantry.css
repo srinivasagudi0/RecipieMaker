@@ -58,3 +58,19 @@ body {
 #clear-btn:hover {
     background-color: #ff1a1a;
 }
+#ingredient-list li {
+    list-style-type:circle;
+    gap: 20px;
+    font-size:1rem;
+    margin-bottom: 10px;
+}
+
+#ingredient-list button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-left: 10px;
+}
