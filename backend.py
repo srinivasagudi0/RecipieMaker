@@ -56,19 +56,19 @@ def ask_pantry_recpie(items):
         You are very creative chef. You are given ingredients the user have. Try to come up with 4-7 dishes
         Here are the ingredients the user has: {items}. Assume that he/she has basic stuff like salt, water & etc.
         
-        Return only a valid JSON in this structure:
-        {{
-            {
+        Return only a valid JSON array in this structure:
+        [
+            {{
                 "name": "Dish_name",
                 "ingredients": "ingredients sepaerated by sapce and commas",
                 "description": "short description",
                 "cook_time": "50 mins"
-            }
-        }}
+            }}
+        ]
 
         RETURN NO MARKDOWN, EXPLANATION OR TEXT OUTSIDE THE JSON.
     """
-    response = client.response.create(
+    response = client.responses.create(
         model="gpt-4.1-mini",
         input=prompt,
     )
@@ -109,11 +109,7 @@ def pantry_dish():
     ingredients = data.get("items","")
     if not ingredients:
         return jsonify({"error": "THis shouldn't happen"})
-    suggestions = ask_pantry_recpie(ingredients)
-
-
-    
-
-    
+    suggestions = json.loads(ask_pantry_recpie(ingredients))
+    return jsonify(suggestions)
 
 app.run(debug=True)
